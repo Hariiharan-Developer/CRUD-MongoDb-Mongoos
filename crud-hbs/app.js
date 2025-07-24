@@ -24,7 +24,7 @@ let edit_id,edit_movie;
 
 if(req.query.edit_id){
     edit_id =req.query.edit_id;
-    edit_movie=await collection.findOne({_id:ObjectId(edit_id)})
+    edit_movie=await collection.findOne({_id: new ObjectId(edit_id)})
 }
 
 
