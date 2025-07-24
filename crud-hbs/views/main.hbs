@@ -4,7 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD - mongo</title>
+      <style>
+        ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.movie-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  margin-bottom: 12px;
+  padding: 14px 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.movie-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.movie-author {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.movie-actions a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.movie-actions a:hover {
+  text-decoration: underline;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"], button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #fff;
+      margin-bottom: 10px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li a {
+      margin-left: 10px;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    li a:hover {
+      text-decoration: underline;
+    }
+
+    h3 {
+      margin-top: 0;
+      color: #555;
+    }
+
+    .message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
+
 <body>
     <h1>MongoDB CRUD</h1>
     {{message}}
@@ -31,14 +169,30 @@
     {{/if}}
 
 
-    <ul>
+    {{!-- <ul>
         {{#each employees}}
         <li>{{this.title}} - {{this.author}} <a href="/?edit_id={{this._id}}">Edit</a> <a href="/?delete_id={{this._id}}"
                 onclick="return confirm('Are you sure want to delete this ?')">Delete</a></li>
             
 
         {{/each}}
-    </ul>
+    </ul> --}}
+
+    <ul>
+  {{#each employees}}
+    <li class="movie-item">
+      <div class="movie-info">
+        <span class="movie-title">{{this.title}}</span>
+        <span class="movie-author">{{this.author}}</span>
+      </div>
+      <div class="movie-actions">
+        <a href="/?edit_id={{this._id}}">Edit</a>
+        <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure want to delete this?')">Delete</a>
+      </div>
+    </li>
+  {{/each}}
+</ul>
+
     
 </body>
 </html>
