@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD - mongo</title>
+</head>
+<body>
+    <h1>MongoDB CRUD</h1>
+    {{message}}
+    {{#if edit_id}}
+
+<h3>Edit</h3>
+        <form action="/update_movie/{{edit_id}}" method="post">
+        <label for="">Title</label>
+        <input type="text" name="title" value="{{edit_movie.title}}">
+        <label for="">Author</label>
+        <input type="text" name="author" value="{{edit_movie.author}}">
+        <input type="submit">
+    </form>
+ 
+{{else}}
+<h3>Create</h3>
+   <form action="/store_movie" method="post">
+        <label for="">Title</label>
+        <input type="text" name="title">
+        <label for="">Author</label>
+        <input type="text" name="author">
+        <input type="submit">
+    </form>
+    {{/if}}
+
+
+    <ul>
+        {{#each employees}}
+        <li>{{this.title}} - {{this.author}} <a href="/?edit_id{{this._id}}">Edit</a></li>
+        {{/each}}
+    </ul>
+    
+</body>
+</html>
